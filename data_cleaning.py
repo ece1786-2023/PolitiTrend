@@ -13,6 +13,7 @@ import numpy as np
 import nltk
 
 from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
 import ssl
 
 try:
@@ -24,6 +25,7 @@ else:
 
 nltk.download()
 
+nltk.download('wordnet')
 nltk.download('stopwords')
 
 import nltk
@@ -31,14 +33,7 @@ import nltk
 
 from nltk.stem import PorterStemmer
 
-ps = PorterStemmer()
-
-# import tensorflow as tf
-
-df = pd.read_csv("/Users/lifeifan/Desktop/ece1786/project/data1.csv")
-
-df['cmp_code'] = df['cmp_code'].replace({'conservatism': 0, 'progressivism': 1})
-df = df.rename(columns={'cmp_code': 'label'})
+lemmatizer = WordNetLemmatizer()
 
 def remove_stop_words (dataframe,target_column_name,new_column_name) :
     dataframe[new_column_name] = dataframe[target_column_name].apply(lambda x:' '.join([item for item in x.split() if item not in stopwords.words('english')]))
@@ -49,6 +44,7 @@ def remove_punctuations(dataframe,target_column_name,new_column_name):
     dataframe[new_column_name] = dataframe[target_column_name].apply(lambda x: "".join([char for char in x if char not in string.punctuation]))
     return dataframe
 
-def stem_text(dataframe,target_column_name,new_column_name):
-    dataframe[new_column_name] = dataframe[target_column_name].apply(lambda x: ' '.join([ps.stem(word) for word in x.split()]))
+def lemm_text(dataframe,target_column_name,new_column_name):
+    dataframe[new_column_name] = dataframe[target_column_name].apply(lambda x: ' '.join([lemmatizer.lemmatize(word) for word in x.split()]))
+
     return dataframe
