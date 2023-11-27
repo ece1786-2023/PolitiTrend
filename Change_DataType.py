@@ -2,7 +2,7 @@ import pandas as pd
 
 
 
-def data_processing(df, column_name):
+def Change_DataType(df, column_name):
 
     int_df = df[df[column_name].apply(lambda x: x.is_integer())]
 
