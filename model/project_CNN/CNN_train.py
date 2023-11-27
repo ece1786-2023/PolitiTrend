@@ -1,7 +1,7 @@
 import torch
 import torchtext
 import torch.nn as nn
-import A2_Starter
+import Project_Starter
 from Project_Starter import *
 import CNN_model 
 import Read_file

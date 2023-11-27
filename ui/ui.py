@@ -20,18 +20,32 @@ def ui(text1,text2, model):
     prob1 = 0
     prob2 = 0
     if model == "CNN":
-        cnn_model = CNN_model.CNNTextClassifier(glove,args)
-        cnn_model.load_state_dict(torch.load('/Users/lifeifan/Desktop/ece1786/a2/A2_Gradio/cnn.pt'))
+        cnn_model1 = CNN_model.CNNTextClassifier(glove,args)
+        cnn_model1.load_state_dict(torch.load('/Users/lifeifan/Desktop/ece1786/project/model_parameters/cnn1.pt'))
 
         tokens = text1.split()
         token_ints = [glove.stoi.get(tok, len(glove.stoi)-1) for tok in tokens]
         token_tensor = torch.LongTensor(token_ints).view(-1,1)
-        cnn_pre = cnn_model(token_tensor)
+        cnn_pre = cnn_model1(token_tensor)
         cnn_prob = float(torch.sigmoid(cnn_pre))
         if cnn_prob > 0.5:
             a,prob1 = "progressive", cnn_prob
         else:
             a,prob1 = "conservative", -(1-cnn_prob)
+
+        cnn_model2 = CNN_model.CNNTextClassifier(glove,args)
+        cnn_model2.load_state_dict(torch.load('/Users/lifeifan/Desktop/ece1786/project/model_parameters/cnn2.pt'))
+
+        tokens = text2.split()
+        token_ints = [glove.stoi.get(tok, len(glove.stoi)-1) for tok in tokens]
+        token_tensor = torch.LongTensor(token_ints).view(-1,1)
+        cnn_pre = cnn_model2(token_tensor)
+        cnn_prob = float(torch.sigmoid(cnn_pre))
+        if cnn_prob > 0.5:
+            b,prob2 = "progressive", cnn_prob
+        else:
+            b,prob2 = "conservative", -(1-cnn_prob)
+
     if model == "BERT":
         model_name = "bert-base-uncased"
         tokenizer = BertTokenizer.from_pretrained(model_name)

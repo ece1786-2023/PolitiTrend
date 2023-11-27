@@ -11,7 +11,7 @@ import pandas as pd
 
 class TextDataset(torch.utils.data.Dataset):
     def __init__(self, vocab, split="train"):
-        data_path = "/Users/lifeifan/Desktop/ece1786/project/A4_CNN/data"
+        data_path = "/Users/lifeifan/Desktop/ece1786/project/model/project_CNN/data"
         df = pd.read_csv(os.path.join(data_path, f"{split}.tsv"), sep="\t")
 
         # X: torch.tensor (maxlen, batch_size), padded indices

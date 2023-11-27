@@ -30,7 +30,7 @@ if __name__ == "__main__":
         plt.plot(test_acc_list, color="r", linestyle="-", linewidth=1, label="test_accuracy")  
         plt.title('Test Accuracy')  
         plt.legend(loc='upper left')
-        torch.save(model.state_dict(),'cnn.pt')
+        torch.save(model.state_dict(),'cnn2.pt')
         
 
     else:

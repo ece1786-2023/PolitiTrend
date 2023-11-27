@@ -11,6 +11,6 @@ parser.add_argument("-n1", type=int, default=20)
 parser.add_argument("-k2", type=int, default=4)
 parser.add_argument("-n2", type=int, default=30)
 parser.add_argument("-lr", type=int, default=0.0005) # learning rate
-parser.add_argument("-epochs", type=int, default=20) # epoch
+parser.add_argument("-epochs", type=int, default=5) # epoch
 parser.add_argument("-freeze_embedding", type=bool, default=True) #freeze_embedding
 args = parser.parse_args()
