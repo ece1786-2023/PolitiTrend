@@ -5,7 +5,7 @@ import random
 import sys
 
 
-sys.path.insert(1, '/Users/lifeifan/Desktop/ece1786/project/')
+sys.path.insert(1, '../PolitiTrend/')
 
 import data_cleaning
 # Load data

@@ -21,7 +21,7 @@ def ui(text1,text2, model):
     prob2 = 0
     if model == "CNN":
         cnn_model1 = CNN_model.CNNTextClassifier(glove,args)
-        cnn_model1.load_state_dict(torch.load('/Users/lifeifan/Desktop/ece1786/project/model_parameters/cnn1.pt'))
+        cnn_model1.load_state_dict(torch.load('./model_parameters/cnn1.pt'))
 
         tokens = text1.split()
         token_ints = [glove.stoi.get(tok, len(glove.stoi)-1) for tok in tokens]
@@ -34,7 +34,7 @@ def ui(text1,text2, model):
             a,prob1 = "conservative", -(1-cnn_prob)
 
         cnn_model2 = CNN_model.CNNTextClassifier(glove,args)
-        cnn_model2.load_state_dict(torch.load('/Users/lifeifan/Desktop/ece1786/project/model_parameters/cnn2.pt'))
+        cnn_model2.load_state_dict(torch.load('./model_parameters/cnn2.pt'))
 
         tokens = text2.split()
         token_ints = [glove.stoi.get(tok, len(glove.stoi)-1) for tok in tokens]
@@ -50,7 +50,7 @@ def ui(text1,text2, model):
         model_name = "bert-base-uncased"
         tokenizer = BertTokenizer.from_pretrained(model_name)
         bertmodel1 = TFBertForSequenceClassification.from_pretrained("bert-base-uncased",num_labels=2)
-        bertmodel1.load_weights('/Users/lifeifan/Desktop/ece1786/project/model_parameters/bert1.h5')
+        bertmodel1.load_weights('./model_parameters/bert1.h5')
         input_text = text1
 
         input_ids = tokenizer.encode(input_text, add_special_tokens=True, return_tensors="tf")
@@ -69,7 +69,7 @@ def ui(text1,text2, model):
             a = "progressive"
         
         bertmodel2 = TFBertForSequenceClassification.from_pretrained("bert-base-uncased",num_labels=2)
-        bertmodel2.load_weights('/Users/lifeifan/Desktop/ece1786/project/model_parameters/bert2.h5')
+        bertmodel2.load_weights('./model_parameters/bert2.h5')
         input_text = text2
 
         input_ids = tokenizer.encode(input_text, add_special_tokens=True, return_tensors="tf")
@@ -90,7 +90,7 @@ def ui(text1,text2, model):
 
 
     if model == "GPT2":
-        gptmodel1 = GPT2ForSequenceClassification.from_pretrained("/Users/lifeifan/Desktop/ece1786/project/model_parameters/gpt2_1")
+        gptmodel1 = GPT2ForSequenceClassification.from_pretrained("./model_parameters/gpt2_1")
 
         tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 
@@ -110,7 +110,7 @@ def ui(text1,text2, model):
         if a == "progressive":
             prob1 = max_value.item()
         
-        gptmodel2 = GPT2ForSequenceClassification.from_pretrained("/Users/lifeifan/Desktop/ece1786/project/model_parameters/gpt2_2")
+        gptmodel2 = GPT2ForSequenceClassification.from_pretrained("./model_parameters/gpt2_2")
 
         tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 
