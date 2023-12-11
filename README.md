@@ -1,15 +1,14 @@
-# ELEC1786 TeamProject
+# PolitiTrend
 
-## Project Log
+## Introduction
+PolitiTrend leverages natural language processing techniques to predict the political stance of text messages. Inspired by ideology tests, it classifies text into economic (regulationism, liberalism) and political-cultural (progressivism, conservatism) spheres.
 
-### 2022.1.13. 08:47
-
-
-## Project Overview
-
+## Data Processing
+Data sourced from [Manifesto Project](https://manifesto-project.wzb.eu/), categorized into four political stances. We implemented data pre-processing steps like lemmatization, stopword and punctuation removal.
 
 
-
+## Results
+Our models demonstrate high accuracy but face challenges like misclassification, misuse of softmax outputs, and handling neutral statements. We discuss strategies to overcome these.
 
 ## Individual Contribution
 **Feifan Li:**
@@ -42,4 +41,9 @@ Responsible for Gradio implementation
 Responsible for Quantitative Analysis of Model performance 
 
 Responsible for the final report
+
+
+## License & Permissions
+Permission granted for posting the final report and source code.
+
 
